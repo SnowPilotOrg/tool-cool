@@ -1,7 +1,6 @@
-import { faHackerNews } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BrandIcon } from "~/components/brand-Icon";
 import { LoadingDots } from "~/components/loading-dots";
+import ReactMarkdown from "react-markdown";
 import type { MessageType } from "~/lib/types";
 
 export const LoadingMessage = () => {
@@ -65,7 +64,13 @@ export const Message = ({
 
 	return (
 		<MessageBubble userRole={message.role === "user"}>
-			{message.content}
+			{message.role === "user" ? (
+				message.content
+			) : (
+				<ReactMarkdown className="prose prose-sm">
+					{message.content}
+				</ReactMarkdown>
+			)}
 		</MessageBubble>
 	);
 };
